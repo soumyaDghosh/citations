@@ -1,0 +1,44 @@
+name: citations
+base: core22
+adopt-info: citations
+grade: stable
+confinement: strict
+compression: lzo
+
+
+parts:
+  rustup:
+    plugin: rust
+    source: .
+    rust-channel: "1.76"
+    override-build: ""
+    override-prime: ""
+
+  citations:
+    after: [rustup]
+    plugin: meson
+    source: https://gitlab.gnome.org/World/citations.git
+    source-tag: '0.6.2'
+    source-depth: 1
+    build-packages:
+      - libssl-dev
+    meson-parameters:
+      - --prefix=/snap/citations/current/usr
+    organize:
+      snap/citations/current: .
+    parse-info: [usr/share/metainfo/org.gnome.World.Citations.metainfo.xml]
+
+slots:
+  citations:
+    interface: dbus
+    bus: session
+    name: org.gnome.World.Citations
+
+apps:
+  citations:
+    command: usr/bin/citations
+    common-id: org.gnome.World.Citations
+    desktop: usr/share/applications/org.gnome.World.Citations.desktop
+    extensions: [gnome]
+    plugs:
+      - home
