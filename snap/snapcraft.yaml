@@ -1,10 +1,13 @@
 name: citations
-base: core22
+base: core24
 adopt-info: citations
 grade: stable
 confinement: strict
 compression: lzo
-
+platforms:
+  amd64:
+  arm64:
+  armhf:
 
 parts:
   rustup:
