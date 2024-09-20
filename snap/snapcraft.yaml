@@ -21,7 +21,7 @@ parts:
     after: [rustup]
     plugin: meson
     source: https://gitlab.gnome.org/World/citations.git
-    source-tag: '0.6.4'
+    source-tag: '0.7.0'
     source-depth: 1
     build-packages:
       - libssl-dev
